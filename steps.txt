@@ -7,6 +7,7 @@
 - Navigation added by 
 	npm install @react-navigation/native
 	expo install react-native-screens react-native-safe-area-context
+	npm install @react-navigation/native-stack
 	URL : https://reactnavigation.org/docs/getting-started/
 
 - Async Storage added by 
