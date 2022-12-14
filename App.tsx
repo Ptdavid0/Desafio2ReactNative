@@ -18,7 +18,7 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <StatusBar style="auto" />
-      {!fontsLoaded ? <Routes /> : <Loading />}
+      {fontsLoaded ? <Routes /> : <Loading />}
     </ThemeProvider>
   );
 };

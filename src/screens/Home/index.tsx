@@ -1,10 +1,23 @@
 import React from "react";
-import { View } from "react-native";
+import HomeHeader from "../../components/homeHeader";
+import InfoContainer from "../../components/InfoContainer";
 
-// import { Container } from './styles';
+import { Container } from "./styles";
 
 const Home: React.FC = () => {
-  return <View />;
+  return (
+    <Container>
+      <HomeHeader />
+      <InfoContainer
+        statistic="90,86%"
+        description="Followers"
+        color="GREEN_LIGHT"
+        fontSize="XXXL"
+        size="large"
+        hasIconDetails
+      />
+    </Container>
+  );
 };
 
 export default Home;
