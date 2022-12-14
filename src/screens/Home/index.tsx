@@ -1,9 +1,12 @@
 import React from "react";
+import { SectionList, View } from "react-native";
 import Button from "../../components/Button";
 import HomeHeader from "../../components/homeHeader";
 import InfoContainer from "../../components/InfoContainer";
+import MealCard from "../../components/MealCard";
+import { mockMeal } from "../../utils/mockData";
 
-import { Container, AddMealContainer, Text } from "./styles";
+import { Container, AddMealContainer, Text, HeaderTextSection } from "./styles";
 
 const Home: React.FC = () => {
   return (
@@ -21,6 +24,17 @@ const Home: React.FC = () => {
         <Text>Refeições</Text>
         <Button title="Nova Refeição" icon={"add"} />
       </AddMealContainer>
+
+      <SectionList
+        sections={mockMeal}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <MealCard meal={item} />}
+        renderSectionHeader={({ section: { title } }) => (
+          <HeaderTextSection>{title}</HeaderTextSection>
+        )}
+        stickySectionHeadersEnabled={false}
+        showsVerticalScrollIndicator={false}
+      />
     </Container>
   );
 };
