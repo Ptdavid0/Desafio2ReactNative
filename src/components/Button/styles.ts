@@ -8,7 +8,6 @@ type Props = {
 };
 
 export const Container = styled.TouchableOpacity<Props>`
-  flex: 1;
   flex-direction: row;
 
   min-height: 56px;
