@@ -15,7 +15,7 @@ type ContainerProps = {
 export const Container = styled.View<ContainerProps>`
   background-color: ${({ theme, backgroundColor }) =>
     theme.COLORS[backgroundColor]};
-  height: ${({ width }) => (width === "small" ? "110px" : "102px")};
+  height: ${({ width }) => (width === "small" ? "110px" : "107px")};
   width: ${({ width }) => (width === "small" ? "48%" : "100%")};
   align-items: center;
   justify-content: center;
@@ -43,9 +43,11 @@ export const IconContainer = styled.TouchableOpacity`
   position: absolute;
   top: 0;
   right: 0;
-  margin: 2px 2px 0 0;
+  margin: 5px 5px 0 0;
 `;
 
 export const Icon = styled(ArrowUpRight).attrs(({ theme }) => ({
   color: theme.COLORS.GREEN_DARK,
+  size: 24,
+  weight: "bold",
 }))``;

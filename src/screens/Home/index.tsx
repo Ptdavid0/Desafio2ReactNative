@@ -1,8 +1,9 @@
 import React from "react";
+import Button from "../../components/Button";
 import HomeHeader from "../../components/homeHeader";
 import InfoContainer from "../../components/InfoContainer";
 
-import { Container } from "./styles";
+import { Container, AddMealContainer, Text } from "./styles";
 
 const Home: React.FC = () => {
   return (
@@ -10,12 +11,16 @@ const Home: React.FC = () => {
       <HomeHeader />
       <InfoContainer
         statistic="90,86%"
-        description="Followers"
+        description="das refeições dentro da dieta"
         color="GREEN_LIGHT"
         fontSize="XXXL"
         size="large"
         hasIconDetails
       />
+      <AddMealContainer>
+        <Text>Refeições</Text>
+        <Button title="Nova Refeição" icon={"add"} />
+      </AddMealContainer>
     </Container>
   );
 };
