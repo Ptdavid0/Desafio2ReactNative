@@ -1,10 +1,11 @@
+import { useRoute } from "@react-navigation/native";
 import React from "react";
-import { Text, View } from "react-native";
-import { useRoute, useNavigation } from "@react-navigation/native";
+import { View } from "react-native";
 import { Meal } from "../../@types/mainTypes";
+import { useNavigation } from "@react-navigation/native";
 
 import { Container } from "./styles";
-
+import Header from "../../components/Header";
 type RouteParams = {
   params: {
     meal: Meal;
@@ -16,15 +17,15 @@ const MealDetails: React.FC = () => {
     params: { meal },
   } = useRoute() as RouteParams;
   const { navigate } = useNavigation();
-  console.log();
+
   if (!meal) {
     navigate("Home");
   }
+
   const { name } = meal;
   return (
     <Container>
-      <Text>MealDetails</Text>
-      <Text>{name}</Text>
+      <Header title={name} />
     </Container>
   );
 };

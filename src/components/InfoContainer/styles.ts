@@ -1,15 +1,16 @@
 import styled, { DefaultTheme } from "styled-components/native";
 import { ArrowUpRight } from "phosphor-react-native";
 
-type TextProps = {
-  fontSize: keyof DefaultTheme["FONT_SIZE"];
-};
-
 export type ContainerSize = "small" | "large";
+
+export type IconProps = {
+  type: "PRIMARY" | "SECONDARY";
+};
 
 type ContainerProps = {
   width: ContainerSize;
   backgroundColor: keyof DefaultTheme["COLORS"];
+  addMargin?: boolean;
 };
 
 export const Container = styled.View<ContainerProps>`
@@ -22,18 +23,7 @@ export const Container = styled.View<ContainerProps>`
   flex-direction: column;
   border-radius: 8px;
   padding: 20px 16px;
-`;
-
-export const Statistic = styled.Text<TextProps>`
-  font-size: ${({ theme, fontSize }) => theme.FONT_SIZE[fontSize]}px;
-  color: ${({ theme }) => theme.COLORS.GRAY_700};
-  font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
-`;
-export const Description = styled.Text`
-  font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
-  color: ${({ theme }) => theme.COLORS.GRAY_600};
-  font-family: ${({ theme }) => theme.FONT_FAMILY.REGULAR};
-  margin-top: 2px;
+  margin: ${({ addMargin }) => (addMargin ? "8px 0" : "0")};
 `;
 
 export const IconContainer = styled.TouchableOpacity`
@@ -46,8 +36,10 @@ export const IconContainer = styled.TouchableOpacity`
   margin: 5px 5px 0 0;
 `;
 
-export const Icon = styled(ArrowUpRight).attrs(({ theme }) => ({
-  color: theme.COLORS.GREEN_DARK,
-  size: 24,
-  weight: "bold",
-}))``;
+export const Icon = styled(ArrowUpRight).attrs<IconProps>(
+  ({ theme, type = "PRIMARY" }) => ({
+    color: type === "PRIMARY" ? theme.COLORS.GREEN_DARK : theme.COLORS.RED_DARK,
+    size: 24,
+    weight: "bold",
+  })
+)``;
