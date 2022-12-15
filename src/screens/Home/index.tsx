@@ -13,9 +13,10 @@ const Home: React.FC = () => {
     <Container>
       <HomeHeader />
       <InfoContainer
-        statistic="90,86%"
+        isStatistic
+        statistic={90.86}
         description="das refeições dentro da dieta"
-        color="GREEN_LIGHT"
+        color="GREEN_MID"
         fontSize="XXXL"
         size="large"
         hasIconDetails

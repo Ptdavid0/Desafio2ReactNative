@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "../screens/Home";
+import StatisticDetail from "../screens/StatisticDetail";
 import MealDetails from "../screens/MealDetails";
-import StatisticsDetails from "../screens/StatisticsDetails";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -17,7 +17,7 @@ const AppRoutes: React.FC = () => {
       />
       <Screen
         name="Statistics"
-        component={StatisticsDetails}
+        component={StatisticDetail}
         options={{
           headerShown: false,
         }}
