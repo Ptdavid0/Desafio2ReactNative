@@ -6,12 +6,15 @@ import { HeaderContainer, Icon, IconContainer, Title } from "./styles";
 
 type HeaderProps = {
   title: string;
+  isInDiet?: boolean;
 };
 
-const Header: React.FC<HeaderProps> = ({ title }) => {
+const Header: React.FC<HeaderProps> = ({ title, isInDiet = null }) => {
   const { navigate } = useNavigation();
   return (
-    <HeaderContainer type="PRIMARY">
+    <HeaderContainer
+      type={isInDiet === null ? "TERTIARY" : isInDiet ? "PRIMARY" : "SECONDARY"}
+    >
       <IconContainer onPress={() => navigate("Home")}>
         <Icon name="arrow-back" />
       </IconContainer>

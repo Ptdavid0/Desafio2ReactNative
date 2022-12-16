@@ -5,13 +5,16 @@ export type ButtonTypeStyleProps = "PRIMARY" | "SECONDARY";
 
 type Props = {
   type: ButtonTypeStyleProps;
+  size?: number;
 };
 
 export const Container = styled.TouchableOpacity<Props>`
   flex-direction: row;
+  margin-top: 10px;
 
   min-height: 56px;
   max-height: 56px;
+  width: 100%;
 
   background-color: ${({ theme, type }) =>
     type === "PRIMARY" ? theme.COLORS.GRAY_600 : theme.COLORS.WHITE};
@@ -33,9 +36,11 @@ export const Title = styled.Text<Props>`
   `}
 `;
 
-export const Icon = styled(MaterialIcons).attrs<Props>(({ theme, type }) => ({
-  size: 24,
-  color: type === "PRIMARY" ? theme.COLORS.WHITE : theme.COLORS.GRAY_700,
-}))`
+export const Icon = styled(MaterialIcons).attrs<Props>(
+  ({ theme, type, size = 24 }) => ({
+    size: size,
+    color: type === "PRIMARY" ? theme.COLORS.WHITE : theme.COLORS.GRAY_700,
+  })
+)`
   margin-right: 8px;
 `;

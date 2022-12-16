@@ -5,10 +5,15 @@ import HomeHeader from "../../components/homeHeader";
 import InfoContainer from "../../components/InfoContainer";
 import MealCard from "../../components/MealCard";
 import { mockMeal } from "../../utils/mockData";
+import { useNavigation } from "@react-navigation/native";
 
 import { Container, AddMealContainer, Text, HeaderTextSection } from "./styles";
 
 const Home: React.FC = () => {
+  const { navigate } = useNavigation();
+  const handleNewMealButton = () => {
+    navigate("AddMeal");
+  };
   return (
     <Container>
       <HomeHeader />
@@ -23,7 +28,11 @@ const Home: React.FC = () => {
       />
       <AddMealContainer>
         <Text>Refeições</Text>
-        <Button title="Nova Refeição" icon={"add"} />
+        <Button
+          title="Nova Refeição"
+          icon={"add"}
+          onPress={handleNewMealButton}
+        />
       </AddMealContainer>
 
       <SectionList

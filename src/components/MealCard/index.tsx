@@ -15,16 +15,14 @@ type Props = {
   meal: Meal;
 };
 
-const MealCard: React.FC<Props> = ({
-  meal: { id, name, time, isInDiet },
-  meal,
-}) => {
+const MealCard: React.FC<Props> = ({ meal }) => {
   const { navigate } = useNavigation();
   const handleNavigation = () => {
     navigate("MealDetails", {
       meal,
     });
   };
+  const { id, name, time, isInDiet } = meal;
   return (
     <Container key={id} onPress={handleNavigation}>
       <InfoContainer>
@@ -32,8 +30,7 @@ const MealCard: React.FC<Props> = ({
         <Separator>|</Separator>
         <Title>{name}</Title>
       </InfoContainer>
-
-      <Icon isInDiet={isInDiet}>{isInDiet}</Icon>
+      <Icon isInDiet={isInDiet} />
     </Container>
   );
 };
