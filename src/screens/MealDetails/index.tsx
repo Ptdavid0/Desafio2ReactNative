@@ -33,6 +33,10 @@ const MealDetails: React.FC = () => {
     navigate("Home");
   }
 
+  const handleEditMealButton = () => {
+    navigate("MealForm", { isEditing: true, meal });
+  };
+
   const { isInDiet, description, name, date, time } = meal;
   return (
     <Container>
@@ -55,7 +59,12 @@ const MealDetails: React.FC = () => {
           )}
         </DietContainer>
         <ButtonContainer>
-          <Button title={"Editar refeição"} icon="edit" size={16} />
+          <Button
+            title={"Editar refeição"}
+            icon="edit"
+            size={16}
+            onPress={handleEditMealButton}
+          />
           <Button
             title={"Excluir refeição"}
             type="SECONDARY"

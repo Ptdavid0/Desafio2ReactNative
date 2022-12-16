@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "../screens/Home";
 import StatisticDetail from "../screens/StatisticDetail";
 import MealDetails from "../screens/MealDetails";
-import AddMeal from "../screens/AddMeal";
+import MealForm from "../screens/MealForm";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -31,8 +31,8 @@ const AppRoutes: React.FC = () => {
         }}
       />
       <Screen
-        name="AddMeal"
-        component={AddMeal}
+        name="MealForm"
+        component={MealForm}
         options={{
           headerShown: false,
         }}
