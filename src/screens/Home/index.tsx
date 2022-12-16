@@ -12,7 +12,7 @@ import { Container, AddMealContainer, Text, HeaderTextSection } from "./styles";
 const Home: React.FC = () => {
   const { navigate } = useNavigation();
   const handleNewMealButton = () => {
-    navigate("AddMeal");
+    navigate("MealForm", { isEditing: false });
   };
   return (
     <Container>
