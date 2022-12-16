@@ -18,8 +18,6 @@ export const Text = styled.Text`
     font-size: ${theme.FONT_SIZE.LG}px;
     color: ${theme.COLORS.GRAY_700};
   `}
-
-  margin-bottom: 8px;
 `;
 
 export const HeaderTextSection = styled.Text`

@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components/native";
+import styled, { css, DefaultTheme } from "styled-components/native";
 import { MaterialIcons } from "@expo/vector-icons";
 
 type HeaderStyleProps = "PRIMARY" | "SECONDARY" | "TERTIARY";
@@ -7,11 +7,22 @@ type Props = {
   type: HeaderStyleProps;
 };
 
+const getBackgroundColor = (type: HeaderStyleProps, theme: DefaultTheme) => {
+  switch (type) {
+    case "PRIMARY":
+      return theme.COLORS.GREEN_MID;
+    case "SECONDARY":
+      return theme.COLORS.RED_MID;
+    case "TERTIARY":
+      return theme.COLORS.GRAY_300;
+    default:
+      return theme.COLORS.GRAY_300;
+  }
+};
+
 export const HeaderContainer = styled.View<Props>`
   ${({ theme, type }) => css`
-    background-color: ${type === "PRIMARY"
-      ? theme.COLORS.GREEN_MID
-      : theme.COLORS.RED_MID};
+    background-color: ${getBackgroundColor(type, theme)};
   `}
   flex-direction: column;
   align-items: center;

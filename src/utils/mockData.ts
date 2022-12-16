@@ -12,7 +12,7 @@ export const mockMeal = [
       },
       {
         id: "2",
-        name: "Chicken and Rice",
+        name: "Grilled Chicken",
         description: "Chicken and Rice with vegetables",
         date: "2021-01-01",
         time: "12:00",
@@ -20,7 +20,7 @@ export const mockMeal = [
       },
       {
         id: "3",
-        name: "Chicken and Rice",
+        name: "Roasted Chicken",
         description: "Chicken and Rice with vegetables",
         date: "2021-01-01",
         time: "12:00",
@@ -28,7 +28,7 @@ export const mockMeal = [
       },
       {
         id: "4",
-        name: "Chicken and Rice",
+        name: "Baked Chicken",
         description: "Chicken and Rice with vegetables",
         date: "2021-01-01",
         time: "12:00",
@@ -41,7 +41,7 @@ export const mockMeal = [
     data: [
       {
         id: "5",
-        name: "Chicken and Rice",
+        name: "Boiled Chicken",
         description: "Chicken and Rice with vegetables",
         date: "2021-01-01",
         time: "12:00",
@@ -49,7 +49,7 @@ export const mockMeal = [
       },
       {
         id: "6",
-        name: "Chicken and Rice",
+        name: "Chicken Fried Rice",
         description: "Chicken and Rice with vegetables",
         date: "2021-01-01",
         time: "12:00",
@@ -57,7 +57,7 @@ export const mockMeal = [
       },
       {
         id: "7",
-        name: "Chicken and Rice",
+        name: "Mashed Chicken",
         description: "Chicken and Rice with vegetables",
         date: "2021-01-01",
         time: "12:00",
@@ -65,7 +65,7 @@ export const mockMeal = [
       },
       {
         id: "8",
-        name: "Chicken and Rice",
+        name: "Beef and Rice",
         description: "Chicken and Rice with vegetables",
         date: "2021-01-01",
         time: "12:00",
@@ -78,7 +78,7 @@ export const mockMeal = [
     data: [
       {
         id: "9",
-        name: "Chicken and Rice",
+        name: "Sliced Chicken",
         description: "Chicken and Rice with vegetables",
         date: "2021-01-01",
         time: "12:00",
@@ -86,7 +86,7 @@ export const mockMeal = [
       },
       {
         id: "10",
-        name: "Chicken and Rice",
+        name: "Gourmet Chicken",
         description: "Chicken and Rice with vegetables",
         date: "2021-01-01",
         time: "12:00",
@@ -94,7 +94,7 @@ export const mockMeal = [
       },
       {
         id: "11",
-        name: "Chicken and Rice",
+        name: "Spicy Chicken",
         description: "Chicken and Rice with vegetables",
         date: "2021-01-01",
         time: "12:00",
@@ -102,7 +102,7 @@ export const mockMeal = [
       },
       {
         id: "12",
-        name: "Chicken and Rice",
+        name: "Slim Chicken",
         description: "Chicken and Rice with vegetables",
         date: "2021-01-01",
         time: "12:00",
