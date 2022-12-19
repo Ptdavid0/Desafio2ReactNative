@@ -17,6 +17,7 @@ import {
 import { Meal } from "../../@types/mainTypes";
 import InputContainer from "../../components/InputContainer";
 import Button from "../../components/Button";
+import { useNavigation } from "@react-navigation/native";
 
 type MealFormParams = {
   params: {
@@ -33,9 +34,27 @@ const MealForm: React.FC = () => {
   const [description, setDescription] = React.useState(meal?.description || "");
   const [date, setDate] = React.useState(meal?.date || "");
   const [time, setTime] = React.useState(meal?.time || "");
-  const [isInDiet, setIsInDiet] = React.useState<boolean | null>(
-    meal?.isInDiet || null
+  const [isInDiet, setIsInDiet] = React.useState<boolean>(
+    meal?.isInDiet || true
   );
+
+  const { navigate } = useNavigation();
+  //Solve problem off false isONDiet on edit mode
+
+  const handleSubmit = () => {
+    if (isEditing && meal)
+      navigate("MealDetails", {
+        meal: {
+          id: meal.id,
+          name,
+          description,
+          date,
+          time,
+          isInDiet,
+        },
+      });
+    else navigate("EndScreen", { isInDiet });
+  };
 
   return (
     <Container>
@@ -76,6 +95,7 @@ const MealForm: React.FC = () => {
         <ButtonContainer>
           <Button
             title={isEditing ? "Salvar alterações" : "Cadastrar refeição"}
+            onPress={handleSubmit}
           />
         </ButtonContainer>
       </InfoSection>
