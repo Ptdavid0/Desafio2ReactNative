@@ -10,6 +10,7 @@ import {
 } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { Meal } from "../../@types/mainTypes";
+import { timestampToTime } from "../../utils/DateUtils";
 
 type Props = {
   meal: Meal;
@@ -23,10 +24,11 @@ const MealCard: React.FC<Props> = ({ meal }) => {
     });
   };
   const { id, name, time, isInDiet } = meal;
+
   return (
     <Container key={id} onPress={handleNavigation}>
       <InfoContainer>
-        <Time>{time}</Time>
+        <Time>{timestampToTime(time)}</Time>
         <Separator>|</Separator>
         <Title>{name}</Title>
       </InfoContainer>

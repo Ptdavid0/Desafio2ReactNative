@@ -9,6 +9,7 @@ type Props = TouchableOpacityProps & {
   type?: ButtonTypeStyleProps;
   icon?: keyof typeof MaterialIcons.glyphMap;
   size?: number;
+  width?: number | string;
 };
 
 const Button: React.FC<Props> = ({
@@ -16,10 +17,11 @@ const Button: React.FC<Props> = ({
   type = "PRIMARY",
   icon,
   size,
+  width,
   ...rest
 }) => {
   return (
-    <Container type={type} {...rest}>
+    <Container type={type} {...rest} width={width}>
       {icon && <Icon name={icon} size={size} color="#fff" type={type} />}
       <Title type={type}>{title}</Title>
     </Container>

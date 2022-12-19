@@ -18,6 +18,7 @@ import { Meal } from "../../@types/mainTypes";
 import InputContainer from "../../components/InputContainer";
 import Button from "../../components/Button";
 import { useNavigation } from "@react-navigation/native";
+import DateTime from "../../components/DateTime";
 
 type MealFormParams = {
   params: {
@@ -32,8 +33,8 @@ const MealForm: React.FC = () => {
   } = useRoute() as MealFormParams;
   const [name, setName] = React.useState(meal?.name || "");
   const [description, setDescription] = React.useState(meal?.description || "");
-  const [date, setDate] = React.useState(meal?.date || "");
-  const [time, setTime] = React.useState(meal?.time || "");
+  const [date, setDate] = React.useState(meal?.date || new Date());
+  const [time, setTime] = React.useState(meal?.time || new Date().getTime());
   const [isInDiet, setIsInDiet] = React.useState<boolean>(
     meal?.isInDiet || true
   );
@@ -68,8 +69,8 @@ const MealForm: React.FC = () => {
           isMultiline
         />
         <DoubleInputContainer>
-          <InputContainer label="Data" size="small" value={date} />
-          <InputContainer label="Hora" size="small" value={time} />
+          <DateTime date={date} setDate={setDate} label="Data" />
+          <DateTime date={time} setDate={setTime} label="Hora" isTime />
         </DoubleInputContainer>
         <InsideDietContainer>
           <Label>Está dentro da dieta ?</Label>
