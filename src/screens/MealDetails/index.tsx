@@ -17,6 +17,9 @@ import {
 } from "./styles";
 import Header from "../../components/Header";
 import Button from "../../components/Button";
+import Popup from "../../components/Popup";
+import { formatDate, timestampToTime } from "../../utils/DateUtils";
+
 type RouteParams = {
   params: {
     meal: Meal;
@@ -28,6 +31,7 @@ const MealDetails: React.FC = () => {
     params: { meal },
   } = useRoute() as RouteParams;
   const { navigate } = useNavigation();
+  const [isVisible, setIsVisible] = React.useState(false);
 
   if (!meal) {
     navigate("Home");
@@ -37,7 +41,15 @@ const MealDetails: React.FC = () => {
     navigate("MealForm", { isEditing: true, meal });
   };
 
+  const handleDeleteMealButton = () => {
+    setIsVisible(true);
+  };
+
+  const handleRemoveMeal = (id: string) => {};
+
   const { isInDiet, description, name, date, time } = meal;
+  const formatedDate = formatDate(date);
+  const formatedTime = timestampToTime(time);
   return (
     <Container>
       <Header title={"Refeição"} isInDiet={isInDiet} />
@@ -48,7 +60,7 @@ const MealDetails: React.FC = () => {
         </TextContainer>
         <TextContainer>
           <TimeTitle>Data e hora</TimeTitle>
-          <Date>{`${date} às ${time}`}</Date>
+          <Date>{`${formatedDate} às ${formatedTime}`}</Date>
         </TextContainer>
         <DietContainer>
           <Icon isInDiet={isInDiet} />
@@ -70,9 +82,15 @@ const MealDetails: React.FC = () => {
             type="SECONDARY"
             icon="delete-outline"
             size={16}
+            onPress={handleDeleteMealButton}
           />
         </ButtonContainer>
       </InfoSection>
+      <Popup
+        isVisible={isVisible}
+        removeMeal={() => handleRemoveMeal(meal.id)}
+        closeModal={() => setIsVisible(false)}
+      />
     </Container>
   );
 };

@@ -6,6 +6,7 @@ export type ButtonTypeStyleProps = "PRIMARY" | "SECONDARY";
 type Props = {
   type: ButtonTypeStyleProps;
   size?: number;
+  width?: number | string;
 };
 
 export const Container = styled.TouchableOpacity<Props>`
@@ -14,7 +15,7 @@ export const Container = styled.TouchableOpacity<Props>`
 
   min-height: 56px;
   max-height: 56px;
-  width: 100%;
+  width: ${({ width }) => (width ? width : "100%")};
 
   background-color: ${({ theme, type }) =>
     type === "PRIMARY" ? theme.COLORS.GRAY_600 : theme.COLORS.WHITE};
