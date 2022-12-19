@@ -1,5 +1,5 @@
 import React from "react";
-import { SectionList, View } from "react-native";
+import { SectionList } from "react-native";
 import Button from "../../components/Button";
 import HomeHeader from "../../components/homeHeader";
 import InfoContainer from "../../components/InfoContainer";

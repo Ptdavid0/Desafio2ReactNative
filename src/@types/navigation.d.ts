@@ -15,6 +15,9 @@ export declare global {
       MealDetails: {
         meal: Meal;
       };
+      EndScreen: {
+        isInDiet: boolean;
+      };
     }
   }
 }

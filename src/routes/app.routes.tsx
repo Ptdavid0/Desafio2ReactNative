@@ -3,6 +3,7 @@ import Home from "../screens/Home";
 import StatisticDetail from "../screens/StatisticDetail";
 import MealDetails from "../screens/MealDetails";
 import MealForm from "../screens/MealForm";
+import EndScreen from "../screens/EndScreen";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -33,6 +34,13 @@ const AppRoutes: React.FC = () => {
       <Screen
         name="MealForm"
         component={MealForm}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Screen
+        name="EndScreen"
+        component={EndScreen}
         options={{
           headerShown: false,
         }}
