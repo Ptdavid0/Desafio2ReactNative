@@ -6,3 +6,8 @@ export type Meal = {
   date: Date;
   isInDiet: boolean;
 };
+
+export type MealGroup = {
+  title: string;
+  meals: Meal[];
+};

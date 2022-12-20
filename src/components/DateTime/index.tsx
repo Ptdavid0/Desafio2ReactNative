@@ -17,7 +17,6 @@ const DateTime: React.FC<DateTimeProps> = ({
   label,
   isTime,
 }) => {
-  console.log(date);
   const [currentDate, setCurrentDate] = React.useState<Date>(
     isTime ? new Date(date) : new Date(date)
   );
