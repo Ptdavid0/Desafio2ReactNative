@@ -5,7 +5,7 @@ export const Container = styled.View`
   flex: 1;
 `;
 
-export type DietStyleProps = "PRIMARY" | "SECONDARY";
+export type DietStyleProps = "PRIMARY" | "SECUNDARY";
 
 type Props = {
   type: DietStyleProps;

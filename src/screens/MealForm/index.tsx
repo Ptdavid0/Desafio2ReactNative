@@ -19,6 +19,8 @@ import InputContainer from "../../components/InputContainer";
 import Button from "../../components/Button";
 import { useNavigation } from "@react-navigation/native";
 import DateTime from "../../components/DateTime";
+import { createMeal } from "../../storage/mealCreate";
+import { Alert } from "react-native";
 
 type MealFormParams = {
   params: {
@@ -39,34 +41,49 @@ const MealForm: React.FC = () => {
     meal?.isInDiet || true
   );
 
-  const { navigate } = useNavigation();
   //Solve problem off false isONDiet on edit mode
 
-  const handleSubmit = () => {
-    if (isEditing && meal)
-      navigate("MealDetails", {
-        meal: {
-          id: meal.id,
-          name,
-          description,
-          date,
-          time,
-          isInDiet,
-        },
-      });
-    else navigate("EndScreen", { isInDiet });
+  const { navigate } = useNavigation();
+
+  const handleSubmit = async () => {
+    if (!name || !description || !date || !time) {
+      return Alert.alert("Preencha todos os campos");
+    }
+    const currentMeal: Meal = {
+      id: meal?.id || Math.random().toString(36).slice(2, 9),
+      name,
+      description,
+      date,
+      time,
+      isInDiet,
+    };
+
+    try {
+      if (isEditing && meal) {
+        // await updateMeal(currentMeal)
+        navigate("MealDetails", {
+          meal: currentMeal,
+        });
+      } else {
+        await createMeal(currentMeal);
+        navigate("EndScreen", { isInDiet });
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <Container>
       <Header title={isEditing ? "Editar refeição" : "Nova Refeição"} />
       <InfoSection>
-        <InputContainer label="Nome" value={name} />
+        <InputContainer label="Nome" value={name} onChangeText={setName} />
         <InputContainer
           label="Descrição"
           size="large"
           value={description}
           isMultiline
+          onChangeText={setDescription}
         />
         <DoubleInputContainer>
           <DateTime date={date} setDate={setDate} label="Data" />

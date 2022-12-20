@@ -12,18 +12,50 @@ import {
 } from "./styles";
 import StaticticText from "../../components/StaticticText";
 import InfoContainer from "../../components/InfoContainer";
+import { getDietStatistics } from "../../storage/mealUtils";
+import Loading from "../../components/Loading";
 
 const StatisticDetail: React.FC = () => {
+  const [mealsPercentage, setMealsPercentage] = React.useState<string>("");
+  const [totalMeals, setTotalMeals] = React.useState<number>(0);
+  const [inDietMeals, setInDietMeals] = React.useState<number>(0);
+  const [outMeals, setOutMeals] = React.useState<number>(0);
+  const [bestSequence, setBestSequence] = React.useState<number>(0);
   const { navigate } = useNavigation();
+
+  useFocusEffect(
+    React.useCallback(() => {
+      const getMeals = async () => {
+        const { totalMeals, inDietMeals, percentage, outMeals, bestSequence } =
+          await getDietStatistics();
+        setMealsPercentage(percentage);
+        setTotalMeals(totalMeals);
+        setInDietMeals(inDietMeals);
+        setOutMeals(outMeals);
+        setBestSequence(bestSequence);
+      };
+      getMeals();
+    }, [])
+  );
+
+  if (
+    !mealsPercentage ||
+    !totalMeals ||
+    !inDietMeals ||
+    !outMeals ||
+    !bestSequence
+  ) {
+    <Loading />;
+  }
 
   return (
     <Container>
-      <HeaderContainer type="PRIMARY">
+      <HeaderContainer type={+mealsPercentage > 50 ? "PRIMARY" : "SECUNDARY"}>
         <IconContainer onPress={() => navigate("Home")}>
           <Icon name="arrow-back" type="PRIMARY" />
         </IconContainer>
         <StaticticText
-          statistic={90.86}
+          statistic={+mealsPercentage}
           isStatistic
           description="das refeições dentro da dieta"
           fontSize="XXXL"
@@ -33,17 +65,17 @@ const StatisticDetail: React.FC = () => {
         <Title>Estatísticas gerais</Title>
         <InfoContainer
           isStatistic={false}
-          statistic={90}
-          description="das refeições dentro da dieta"
+          statistic={bestSequence}
+          description="melhor sequência de pratos dentro da dieta"
           color="GRAY_300"
           fontSize="XXL"
           size="large"
           addMargin
         />
         <InfoContainer
-          statistic={6}
+          statistic={totalMeals}
           isStatistic={false}
-          description="das refeições dentro da dieta"
+          description="refeições registradas"
           color="GRAY_300"
           fontSize="XXL"
           size="large"
@@ -52,7 +84,7 @@ const StatisticDetail: React.FC = () => {
         <LowerInfoContainer>
           <InfoContainer
             isStatistic={false}
-            statistic={10}
+            statistic={inDietMeals}
             description="das refeições dentro da dieta"
             color="GREEN_MID"
             fontSize="XXL"
@@ -61,8 +93,8 @@ const StatisticDetail: React.FC = () => {
           />
           <InfoContainer
             isStatistic={false}
-            statistic={22}
-            description="das refeições dentro da dieta"
+            statistic={outMeals}
+            description="refeições fora da dieta"
             color="RED_MID"
             fontSize="XXL"
             size="small"
