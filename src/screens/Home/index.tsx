@@ -1,16 +1,18 @@
 import React from "react";
-import { SectionList } from "react-native";
+import { SectionList, SectionListRenderItem } from "react-native";
 import Button from "../../components/Button";
 import HomeHeader from "../../components/homeHeader";
 import InfoContainer from "../../components/InfoContainer";
-import { mockMeal } from "../../utils/mockData";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 
 import { Container, AddMealContainer, Text, HeaderTextSection } from "./styles";
 import { getAllMeals } from "../../storage/mealGetAll";
+import { MealGroup } from "../../@types/mainTypes";
+import MealCard from "../../components/MealCard";
+import { orderMeals } from "../../utils/DateUtils";
 
 const Home: React.FC = () => {
-  const [meals, setMeals] = React.useState([]);
+  const [meals, setMeals] = React.useState<MealGroup[]>([]);
   const { navigate } = useNavigation();
   const handleNewMealButton = () => {
     navigate("MealForm", { isEditing: false });
@@ -20,13 +22,12 @@ const Home: React.FC = () => {
     React.useCallback(() => {
       const getMeals = async () => {
         const meals = await getAllMeals();
-        setMeals(meals);
+        const orderedMeals = orderMeals(meals);
+        setMeals(orderedMeals);
       };
       getMeals();
     }, [])
   );
-
-  console.log(meals);
 
   return (
     <Container>
@@ -51,11 +52,9 @@ const Home: React.FC = () => {
 
       {meals && meals.length > 0 && (
         <SectionList
-          sections={mockMeal}
+          sections={meals}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => {
-            return <Text>Hello</Text>;
-          }}
+          renderItem={({ item }) => <MealCard meal={item} />}
           renderSectionHeader={({ section: { title } }) => (
             <HeaderTextSection>{title}</HeaderTextSection>
           )}

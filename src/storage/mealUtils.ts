@@ -19,7 +19,7 @@ export const getDietStatistics = async (): Promise<DietStatistics> => {
   if (storage) {
     const parsedData = storage && JSON.parse(storage);
     parsedData.forEach((group: MealGroup) => {
-      group.meals.forEach((meal: Meal) => {
+      group.data.forEach((meal: Meal) => {
         totalMeals++;
         if (meal.isInDiet) {
           inDietMeals++;
@@ -42,7 +42,7 @@ export const getBestSequence = async (parsedData: MealGroup[]) => {
   let bestSequence = 0;
   let currentSequence = 0;
   parsedData.forEach((group: MealGroup) => {
-    group.meals.forEach((meal: Meal) => {
+    group.data.forEach((meal: Meal) => {
       if (meal.isInDiet) {
         currentSequence++;
       } else {

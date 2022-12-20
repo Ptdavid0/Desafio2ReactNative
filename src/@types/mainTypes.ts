@@ -9,5 +9,5 @@ export type Meal = {
 
 export type MealGroup = {
   title: string;
-  meals: Meal[];
+  data: Meal[];
 };

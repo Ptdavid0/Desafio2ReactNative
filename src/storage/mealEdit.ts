@@ -14,7 +14,7 @@ export const editMeal = async (meal: Meal) => {
 
       const updatedData = parsedData.map((item: MealGroup) => {
         if (item.title === formatDate(meal.date)) {
-          const updatedMeals = item.meals.map((item) => {
+          const updatedMeals = item.data.map((item) => {
             if (item.id === meal.id) {
               return meal;
             } else {
