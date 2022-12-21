@@ -1,6 +1,4 @@
 import React from "react";
-import { Text } from "react-native";
-import Modal from "react-native-modal";
 import Button from "../Button";
 
 import { InnerContainer, ButtonContainer, Title, ModalStyled } from "./styles";

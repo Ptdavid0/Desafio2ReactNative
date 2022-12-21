@@ -1,5 +1,4 @@
 import React from "react";
-import { View } from "react-native";
 import { Avatar, HeaderContainer, Logo } from "./styles";
 
 const homeHeader: React.FC = () => {
