@@ -66,7 +66,6 @@ export const createMeal = async (meal: Meal) => {
       await AsyncStorage.setItem(COLLECTION_MEALS, JSON.stringify([newGroup]));
     }
     const updatedStorage = await AsyncStorage.getItem(COLLECTION_MEALS);
-    console.log(updatedStorage);
   } catch (error: any) {
     throw new Error(error);
   }
