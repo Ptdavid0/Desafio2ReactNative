@@ -61,6 +61,7 @@ export const Label = styled.Text`
 
 export const InsideDietContainer = styled.View`
   flex-direction: column;
+  margin-top: 16px;
   width: 100%;
 `;
 export const InnerInsideContainer = styled.View`
@@ -71,7 +72,6 @@ export const InnerInsideContainer = styled.View`
 
 export const DietButton = styled.TouchableOpacity<ButtonProps>`
   flex-direction: row;
-  margin-top: 10px;
 
   min-height: 56px;
   max-height: 56px;

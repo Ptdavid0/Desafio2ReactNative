@@ -50,8 +50,8 @@ const MealForm: React.FC = () => {
     }
     const currentMeal: Meal = {
       id: meal?.id || Math.random().toString(36).slice(2, 9),
-      name,
-      description,
+      name: name.trim(),
+      description: description.trim(),
       date,
       time,
       isInDiet,
@@ -74,7 +74,7 @@ const MealForm: React.FC = () => {
 
   return (
     <Container>
-      <Header title={isEditing ? "Editar refeição" : "Nova Refeição"} />
+      <Header title={isEditing ? "Editar refeição" : "Nova refeição"} />
       <InfoSection>
         <InputContainer label="Nome" value={name} onChangeText={setName} />
         <InputContainer
