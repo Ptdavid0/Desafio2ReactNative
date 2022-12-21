@@ -2,7 +2,9 @@ import { MealGroup } from "../@types/mainTypes";
 
 export const timestampToTime = (timestamp: number) => {
   const date = new Date(timestamp);
-  return `${date.getHours()}:${String(date.getMinutes()).padStart(2, "0")}`;
+  return `${String(date.getHours()).padStart(2, "0")}:${String(
+    date.getMinutes()
+  ).padStart(2, "0")}`;
 };
 
 export const formatDate = (date: Date) => {

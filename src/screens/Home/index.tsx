@@ -9,7 +9,7 @@ import { Container, AddMealContainer, Text, HeaderTextSection } from "./styles";
 import { getAllMeals } from "../../storage/mealGetAll";
 import { MealGroup } from "../../@types/mainTypes";
 import MealCard from "../../components/MealCard";
-import { orderByDate, orderMeals } from "../../utils/DateUtils";
+import { orderByDate } from "../../utils/DateUtils";
 import Loading from "../../components/Loading";
 import { getDietStatistics } from "../../storage/mealUtils";
 
@@ -54,7 +54,7 @@ const Home: React.FC = () => {
       <HomeHeader />
       <InfoContainer
         isStatistic
-        statistic={+mealsPercentage}
+        statistic={isNaN(+mealsPercentage) ? 0 : +mealsPercentage}
         description="das refeições dentro da dieta"
         color={+mealsPercentage > 50 ? "GREEN_MID" : "RED_MID"}
         fontSize="XXXL"
