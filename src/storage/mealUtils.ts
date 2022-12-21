@@ -46,7 +46,6 @@ export const getBestSequence = async (parsedData: MealGroup[]) => {
       if (meal.isInDiet) {
         currentSequence++;
       } else {
-        console.log(currentSequence);
         if (currentSequence > bestSequence) {
           bestSequence = currentSequence;
         }
@@ -54,6 +53,10 @@ export const getBestSequence = async (parsedData: MealGroup[]) => {
       }
     });
   });
+
+  if (currentSequence > bestSequence) {
+    bestSequence = currentSequence;
+  }
 
   return bestSequence;
 };

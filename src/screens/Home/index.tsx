@@ -1,5 +1,5 @@
 import React from "react";
-import { SectionList, SectionListRenderItem } from "react-native";
+import { SectionList } from "react-native";
 import Button from "../../components/Button";
 import HomeHeader from "../../components/homeHeader";
 import InfoContainer from "../../components/InfoContainer";
@@ -10,9 +10,13 @@ import { getAllMeals } from "../../storage/mealGetAll";
 import { MealGroup } from "../../@types/mainTypes";
 import MealCard from "../../components/MealCard";
 import { orderMeals } from "../../utils/DateUtils";
+import Loading from "../../components/Loading";
+import { getDietStatistics } from "../../storage/mealUtils";
 
 const Home: React.FC = () => {
   const [meals, setMeals] = React.useState<MealGroup[]>([]);
+  const [mealsPercentage, setMealsPercentage] = React.useState<string>("");
+  const [isLoading, setIsLoading] = React.useState(true);
   const { navigate } = useNavigation();
   const handleNewMealButton = () => {
     navigate("MealForm", { isEditing: false });
@@ -21,22 +25,40 @@ const Home: React.FC = () => {
   useFocusEffect(
     React.useCallback(() => {
       const getMeals = async () => {
+        setIsLoading(true);
         const meals = await getAllMeals();
         const orderedMeals = orderMeals(meals);
         setMeals(orderedMeals);
+        setIsLoading(false);
       };
       getMeals();
     }, [])
   );
+
+  useFocusEffect(
+    React.useCallback(() => {
+      const getMeals = async () => {
+        const { percentage } = await getDietStatistics();
+        setMealsPercentage(percentage);
+      };
+      getMeals();
+    }, [])
+  );
+
+  if (isLoading) {
+    <Loading />;
+  }
+
+  console.log(meals);
 
   return (
     <Container>
       <HomeHeader />
       <InfoContainer
         isStatistic
-        statistic={90.86}
+        statistic={+mealsPercentage}
         description="das refeições dentro da dieta"
-        color="GREEN_MID"
+        color={+mealsPercentage > 50 ? "GREEN_MID" : "RED_MID"}
         fontSize="XXXL"
         size="large"
         hasIconDetails
@@ -50,21 +72,19 @@ const Home: React.FC = () => {
         />
       </AddMealContainer>
 
-      {meals && meals.length > 0 && (
-        <SectionList
-          sections={meals}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <MealCard meal={item} />}
-          renderSectionHeader={({ section: { title } }) => (
-            <HeaderTextSection>{title}</HeaderTextSection>
-          )}
-          stickySectionHeadersEnabled={false}
-          showsVerticalScrollIndicator={false}
-          ListEmptyComponent={() => (
-            <HeaderTextSection>Nenhuma refeição encontrada</HeaderTextSection>
-          )}
-        />
-      )}
+      <SectionList
+        sections={meals}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <MealCard meal={item} />}
+        renderSectionHeader={({ section: { title } }) => (
+          <HeaderTextSection>{title}</HeaderTextSection>
+        )}
+        stickySectionHeadersEnabled={false}
+        showsVerticalScrollIndicator={false}
+        ListEmptyComponent={() => (
+          <HeaderTextSection>Nenhuma refeição encontrada</HeaderTextSection>
+        )}
+      />
     </Container>
   );
 };

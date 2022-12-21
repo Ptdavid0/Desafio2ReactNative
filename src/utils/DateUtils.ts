@@ -2,13 +2,14 @@ import { MealGroup } from "../@types/mainTypes";
 
 export const timestampToTime = (timestamp: number) => {
   const date = new Date(timestamp);
-  return `${date.getHours()}:${date.getMinutes()}`;
+  return `${date.getHours()}:${String(date.getMinutes()).padStart(2, "0")}`;
 };
 
 export const formatDate = (date: Date) => {
-  const day = date.getDate();
-  const month = date.getMonth() + 1;
-  const year = date.getFullYear();
+  const currentDate = new Date(date);
+  const day = currentDate.getDate();
+  const month = currentDate.getMonth() + 1;
+  const year = currentDate.getFullYear();
   return `${day}/${month}/${year}`;
 };
 

@@ -52,7 +52,10 @@ const StatisticDetail: React.FC = () => {
     <Container>
       <HeaderContainer type={+mealsPercentage > 50 ? "PRIMARY" : "SECUNDARY"}>
         <IconContainer onPress={() => navigate("Home")}>
-          <Icon name="arrow-back" type="PRIMARY" />
+          <Icon
+            name="arrow-back"
+            type={+mealsPercentage > 50 ? "PRIMARY" : "SECUNDARY"}
+          />
         </IconContainer>
         <StaticticText
           statistic={+mealsPercentage}

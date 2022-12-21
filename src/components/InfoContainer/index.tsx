@@ -36,7 +36,7 @@ const InfoContainer: React.FC<InfoContainerProps> = ({
     <Container backgroundColor={color} width={size} addMargin={addMargin}>
       {hasIconDetails && (
         <IconContainer onPress={handleNavigate}>
-          <Icon />
+          <Icon type={statistic > 50 ? "PRIMARY" : "SECUNDARY"} />
         </IconContainer>
       )}
       <StaticticText
