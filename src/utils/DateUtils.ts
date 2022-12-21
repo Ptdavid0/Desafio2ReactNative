@@ -12,7 +12,7 @@ export const formatDate = (date: Date) => {
   const day = currentDate.getDate();
   const month = currentDate.getMonth() + 1;
   const year = currentDate.getFullYear();
-  return `${day}/${month}/${year}`;
+  return `${day}.${month}.${year}`;
 };
 
 export const timestampToDate = (timestamp: number) => {
@@ -35,9 +35,9 @@ export const orderByDate = (meals: MealGroup[]) => {
 };
 
 const getDateByString = (date: string) => {
-  const year = date.split("/")[2];
-  const month = date.split("/")[1];
-  const day = date.split("/")[0];
+  const year = date.split(".")[2];
+  const month = date.split(".")[1];
+  const day = date.split(".")[0];
   return new Date(`${year}-${month}-${day}`);
 };
 

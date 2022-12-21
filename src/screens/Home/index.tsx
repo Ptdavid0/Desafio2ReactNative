@@ -64,7 +64,7 @@ const Home: React.FC = () => {
       <AddMealContainer>
         <Text>Refeições</Text>
         <Button
-          title="Nova Refeição"
+          title="Nova refeição"
           icon={"add"}
           onPress={handleNewMealButton}
         />
@@ -80,7 +80,7 @@ const Home: React.FC = () => {
         stickySectionHeadersEnabled={false}
         showsVerticalScrollIndicator={false}
         ListEmptyComponent={() => (
-          <HeaderTextSection>Nenhuma refeição encontrada</HeaderTextSection>
+          <HeaderTextSection>Nenhuma refeição cadastrada</HeaderTextSection>
         )}
       />
     </Container>
