@@ -16,7 +16,7 @@ export const removeMeal = async (meal: Meal) => {
         if (item.title === formatDate(meal.date)) {
           const updatedMeals = item.data.filter((item) => item.id !== meal.id);
           if (updatedMeals.length === 0) return;
-          return { title: item.title, meals: updatedMeals };
+          return { title: item.title, data: updatedMeals };
         } else {
           return item;
         }

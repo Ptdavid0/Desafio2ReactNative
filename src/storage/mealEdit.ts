@@ -21,13 +21,11 @@ export const updateMeal = async (meal: Meal) => {
               return item;
             }
           });
-          return { title: item.title, meals: updatedMeals };
+          return { title: item.title, data: updatedMeals };
         } else {
           return item;
         }
       });
-
-      console.log("updatedData", updatedData);
 
       await AsyncStorage.setItem(COLLECTION_MEALS, JSON.stringify(updatedData));
     }

@@ -42,8 +42,6 @@ const MealForm: React.FC = () => {
     meal?.isInDiet !== undefined ? meal?.isInDiet : true
   );
 
-  //Solve problem off false isONDiet on edit mode
-
   const { navigate } = useNavigation();
 
   const handleSubmit = async () => {

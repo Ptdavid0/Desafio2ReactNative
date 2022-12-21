@@ -19,6 +19,8 @@ import Header from "../../components/Header";
 import Button from "../../components/Button";
 import Popup from "../../components/Popup";
 import { formatDate, timestampToTime } from "../../utils/DateUtils";
+import { Alert } from "react-native";
+import { removeMeal } from "../../storage/mealRemove";
 
 type RouteParams = {
   params: {
@@ -41,11 +43,20 @@ const MealDetails: React.FC = () => {
     navigate("MealForm", { isEditing: true, meal });
   };
 
-  const handleDeleteMealButton = () => {
+  const handleDeleteMealButton = async () => {
     setIsVisible(true);
   };
 
-  const handleRemoveMeal = (id: string) => {};
+  const handleRemoveMeal = async (meal: Meal) => {
+    setIsVisible(false);
+    try {
+      await removeMeal(meal);
+      navigate("Home");
+    } catch (error) {
+      Alert.alert("Erro ao excluir refeição");
+      console.log(error);
+    }
+  };
 
   const { isInDiet, description, name, date, time } = meal;
   const formatedDate = date && formatDate(date);
@@ -88,7 +99,7 @@ const MealDetails: React.FC = () => {
       </InfoSection>
       <Popup
         isVisible={isVisible}
-        removeMeal={() => handleRemoveMeal(meal.id)}
+        removeMeal={() => handleRemoveMeal(meal)}
         closeModal={() => setIsVisible(false)}
       />
     </Container>
