@@ -39,10 +39,8 @@ const MealForm: React.FC = () => {
   const [date, setDate] = React.useState(meal?.date || new Date());
   const [time, setTime] = React.useState(meal?.time || new Date().getTime());
   const [isInDiet, setIsInDiet] = React.useState<boolean>(
-    meal?.isInDiet || true
+    meal?.isInDiet !== undefined ? meal?.isInDiet : true
   );
-
-  //Solve problem off false isONDiet on edit mode
 
   const { navigate } = useNavigation();
 

@@ -10,19 +10,26 @@ export const removeMeal = async (meal: Meal) => {
     const storage = await AsyncStorage.getItem(COLLECTION_MEALS);
 
     if (storage) {
-      const parsedData = storage && JSON.parse(storage);
+      const parsedData: MealGroup[] = storage && JSON.parse(storage);
 
       const updatedData = parsedData.map((item: MealGroup) => {
         if (item.title === formatDate(meal.date)) {
           const updatedMeals = item.data.filter((item) => item.id !== meal.id);
-          if (updatedMeals.length === 0) return;
-          return { title: item.title, meals: updatedMeals };
+          if (updatedMeals.length === 0) {
+            return null;
+          }
+          return { title: item.title, data: updatedMeals };
         } else {
           return item;
         }
       });
 
-      await AsyncStorage.setItem(COLLECTION_MEALS, JSON.stringify(updatedData));
+      const filteredData = updatedData.filter((item) => item !== null);
+
+      await AsyncStorage.setItem(
+        COLLECTION_MEALS,
+        JSON.stringify(filteredData)
+      );
     }
   } catch (error: any) {
     throw new Error(error);

@@ -1,6 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { Meal, MealGroup } from "../@types/mainTypes";
+import { orderByDate } from "../utils/DateUtils";
 
 import { COLLECTION_MEALS } from "./storageConfig";
 
@@ -41,7 +42,8 @@ export const getDietStatistics = async (): Promise<DietStatistics> => {
 export const getBestSequence = async (parsedData: MealGroup[]) => {
   let bestSequence = 0;
   let currentSequence = 0;
-  parsedData.forEach((group: MealGroup) => {
+  const orderedData = orderByDate(parsedData);
+  orderedData.forEach((group: MealGroup) => {
     group.data.forEach((meal: Meal) => {
       if (meal.isInDiet) {
         currentSequence++;
