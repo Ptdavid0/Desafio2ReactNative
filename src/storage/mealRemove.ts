@@ -14,7 +14,7 @@ export const removeMeal = async (meal: Meal) => {
 
       const updatedData = parsedData.map((item: MealGroup) => {
         if (item.title === formatDate(meal.date)) {
-          const updatedMeals = item.meals.filter((item) => item.id !== meal.id);
+          const updatedMeals = item.data.filter((item) => item.id !== meal.id);
           if (updatedMeals.length === 0) return;
           return { title: item.title, meals: updatedMeals };
         } else {

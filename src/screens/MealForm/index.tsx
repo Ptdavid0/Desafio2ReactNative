@@ -21,6 +21,7 @@ import { useNavigation } from "@react-navigation/native";
 import DateTime from "../../components/DateTime";
 import { createMeal } from "../../storage/mealCreate";
 import { Alert } from "react-native";
+import { updateMeal } from "../../storage/mealEdit";
 
 type MealFormParams = {
   params: {
@@ -60,7 +61,7 @@ const MealForm: React.FC = () => {
 
     try {
       if (isEditing && meal) {
-        // await updateMeal(currentMeal)
+        await updateMeal(currentMeal);
         navigate("MealDetails", {
           meal: currentMeal,
         });

@@ -5,6 +5,7 @@ import { formatDate } from "../utils/DateUtils";
 import { COLLECTION_MEALS } from "./storageConfig";
 
 export const createMeal = async (meal: Meal) => {
+  // AsyncStorage.clear();
   try {
     const storage = await AsyncStorage.getItem(COLLECTION_MEALS);
 
@@ -20,7 +21,7 @@ export const createMeal = async (meal: Meal) => {
         );
         const updatedGroup: MealGroup = {
           title: group.title,
-          meals: [...group.meals, meal],
+          data: [...group.data, meal],
         };
 
         const parsedData = storage && JSON.parse(storage);
@@ -42,7 +43,7 @@ export const createMeal = async (meal: Meal) => {
 
         const newGroup: MealGroup = {
           title: date,
-          meals: [meal],
+          data: [meal],
         };
 
         const parsedData = storage && JSON.parse(storage);
@@ -59,7 +60,7 @@ export const createMeal = async (meal: Meal) => {
 
       const newGroup: MealGroup = {
         title: date,
-        meals: [meal],
+        data: [meal],
       };
 
       await AsyncStorage.setItem(COLLECTION_MEALS, JSON.stringify([newGroup]));

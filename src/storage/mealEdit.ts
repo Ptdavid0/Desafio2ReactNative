@@ -5,7 +5,7 @@ import { formatDate } from "../utils/DateUtils";
 
 import { COLLECTION_MEALS } from "./storageConfig";
 
-export const editMeal = async (meal: Meal) => {
+export const updateMeal = async (meal: Meal) => {
   try {
     const storage = await AsyncStorage.getItem(COLLECTION_MEALS);
 
@@ -14,7 +14,7 @@ export const editMeal = async (meal: Meal) => {
 
       const updatedData = parsedData.map((item: MealGroup) => {
         if (item.title === formatDate(meal.date)) {
-          const updatedMeals = item.meals.map((item) => {
+          const updatedMeals = item.data.map((item) => {
             if (item.id === meal.id) {
               return meal;
             } else {
@@ -26,6 +26,8 @@ export const editMeal = async (meal: Meal) => {
           return item;
         }
       });
+
+      console.log("updatedData", updatedData);
 
       await AsyncStorage.setItem(COLLECTION_MEALS, JSON.stringify(updatedData));
     }

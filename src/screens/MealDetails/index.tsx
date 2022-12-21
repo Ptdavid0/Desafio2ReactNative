@@ -48,8 +48,8 @@ const MealDetails: React.FC = () => {
   const handleRemoveMeal = (id: string) => {};
 
   const { isInDiet, description, name, date, time } = meal;
-  const formatedDate = formatDate(date);
-  const formatedTime = timestampToTime(time);
+  const formatedDate = date && formatDate(date);
+  const formatedTime = time && timestampToTime(time);
   return (
     <Container>
       <Header title={"Refeição"} isInDiet={isInDiet} />
