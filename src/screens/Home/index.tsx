@@ -9,7 +9,7 @@ import { Container, AddMealContainer, Text, HeaderTextSection } from "./styles";
 import { getAllMeals } from "../../storage/mealGetAll";
 import { MealGroup } from "../../@types/mainTypes";
 import MealCard from "../../components/MealCard";
-import { orderMeals } from "../../utils/DateUtils";
+import { orderByDate, orderMeals } from "../../utils/DateUtils";
 import Loading from "../../components/Loading";
 import { getDietStatistics } from "../../storage/mealUtils";
 
@@ -27,7 +27,7 @@ const Home: React.FC = () => {
       const getMeals = async () => {
         setIsLoading(true);
         const meals = await getAllMeals();
-        const orderedMeals = orderMeals(meals);
+        const orderedMeals = orderByDate(meals);
         setMeals(orderedMeals);
         setIsLoading(false);
       };
@@ -48,8 +48,6 @@ const Home: React.FC = () => {
   if (isLoading) {
     <Loading />;
   }
-
-  console.log(meals);
 
   return (
     <Container>
